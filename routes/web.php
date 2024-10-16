@@ -8,5 +8,8 @@ Route::get('/', function () {
 });
 Route::get('home', [userController::class,'welcomepage']);
 Route::resource('crud',userController::class);
-Route::delete('/deleteall', [userController::class, 'deleteall'])->name('deleteall');
+Route::get('search', [UserController::class,'search'])->name('search');
+Route::delete('/deleteall', [userController::class,'deleteall'])->name('deleteall');
+
+
 

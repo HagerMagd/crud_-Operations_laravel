@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Casts\HashCast;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Support\Address;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -51,4 +54,24 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => strtoupper($value),
+            set: fn (string $value) => strtoupper($value),
+        );
+    }
+    protected function address(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => strtoupper($value),
+            set: fn (string $value) => strtoupper($value),
+        );
+    }
+    public function setPasswordAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['password'] = Hash::make($value);
+        }
+}
 }

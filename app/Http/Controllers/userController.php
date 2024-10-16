@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\StoreFormRequest;
+use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 class userController extends Controller
+
+
 {
+   
     // for welcome page
     
     public function welcomepage()
@@ -70,17 +76,23 @@ class userController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreFormRequest $request, string $id)
-    {
-        $user=User::findOrFail($id);
-        $user->update([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'address'=>$request->address,
-            'password' => $request->password
-        ]);
+    public function update(UpdateUserRequest $request, string $id)
+{
+
+        $user = User::findOrFail($id);
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'address' => $request->address,
+        ];
+        if ($request->filled('password')) {
+            $data['password']=$request->password;
+        }
+        $user->update($data);
+
         return redirect()->route('crud.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -92,9 +104,18 @@ class userController extends Controller
     }
     public function deleteall(){
         User::truncate();
-        return redirect()->route('crud.index')->with('success', 'تم حذف جميع البيانات بنجاح');
+        return redirect()->route('crud.index');
         
+    
     }
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        $users = User::where('name', 'like', '%' . $searchTerm . '%')->get();
+        Log::info("Number of users found: " . $users->count());
+        return view('crud.showsearch', compact('users'));
+    }
+    
    
 
 }
