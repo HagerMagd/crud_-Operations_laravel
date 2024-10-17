@@ -72,7 +72,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('crud.update', $user->id) }}" method="POST" class="needs-validation" novalidate>
+    <form action="{{ route('users.update', $user->id) }}" method="POST" class="needs-validation" novalidate>
         @csrf
         @method('PUT')
 

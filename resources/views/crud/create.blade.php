@@ -76,7 +76,7 @@
         </ul>
     </div>
     @endif
-    <form action="{{route('crud.store')}}" method="post" class="needs-validation" novalidate>
+    <form action="{{route('users.store')}}" method="post" class="needs-validation" novalidate>
         @csrf
         <div class="mb-3">
             <label for="validationTooltip01" class="form-label">Your Name</label>

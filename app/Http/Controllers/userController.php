@@ -44,14 +44,7 @@ class userController extends Controller
     {
 
         User::create(
-            [
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'address'=>$request->address,
-                'password' => $request->password
-
-            ]
-            );
+            $request->all());
             return view('crud.data');
     }
 
@@ -90,7 +83,7 @@ class userController extends Controller
         }
         $user->update($data);
 
-        return redirect()->route('crud.index');
+        return redirect()->route('users.index');
     }
 
 
@@ -100,17 +93,17 @@ class userController extends Controller
     public function destroy(string $id)
     {
         User::findorFail($id)->delete();
-        return redirect()->route('crud.index');
+        return redirect()->route('users.index');
     }
     public function deleteall(){
         User::truncate();
-        return redirect()->route('crud.index');
+        return redirect()->route('users.index');
         
     
     }
     public function search(Request $request)
     {
-        $searchTerm = $request->input('search');
+        $searchTerm = $request->query('search');
         $users = User::where('name', 'like', '%' . $searchTerm . '%')->get();
         Log::info("Number of users found: " . $users->count());
         return view('crud.showsearch', compact('users'));

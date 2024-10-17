@@ -135,8 +135,8 @@
         <h1 class="welcome-text">Welcome To Our Company</h1>
         <p class="lead moving-text">Your Control Panel For Users </p> 
         <div class="mt-4">
-            <a href="{{route('crud.create')}}" class="btn btn-primary custom-btn mx-2">Add User</a>
-            <a href="{{route('crud.index')}}" class="btn btn-show-users custom-btn mx-2">Show Users</a>
+            <a href="{{route('users.create')}}" class="btn btn-primary custom-btn mx-2">Add User</a>
+            <a href="{{route('users.index')}}" class="btn btn-show-users custom-btn mx-2">Show Users</a>
         </div>
     </div>
 

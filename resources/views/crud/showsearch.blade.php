@@ -27,14 +27,14 @@
       <td>{{$user->email}}</td>
       <td>{{$user->address}}</td>
       <td>   
-        <form method="POST" action="{{route('crud.edit',$user->id)}}">
+        <form method="POST" action="{{route('users.edit',$user->id)}}">
             @method('GET')
             @csrf
             <button type="submit" class="btn btn-success">EDIT</button>
         </form>
       </td>
       <td>
-        <form method="POST" action="{{route('crud.destroy',$user->id)}}">
+        <form method="POST" action="{{route('users.destroy',$user->id)}}">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">DELETE</button>

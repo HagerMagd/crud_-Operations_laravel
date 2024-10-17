@@ -123,8 +123,8 @@ p.lead {
         <h1 class="welcome-text">User Add Successfully</h1>
         <!-- <p class="lead moving-text">Your best tool for managing data!</p> الجملة المتحركة -->
         <div class="mt-4">
-            <a href="{{route('crud.create')}}" class="btn btn-primary custom-btn mx-2">Add Another Users</a>
-            <a href="{{route('crud.index')}}" class="btn btn-danger custom-btn mx-2">show Users</a>
+            <a href="{{route('users.create')}}" class="btn btn-primary custom-btn mx-2">Add Another Users</a>
+            <a href="{{route('users.index')}}" class="btn btn-danger custom-btn mx-2">show Users</a>
         </div>
     </div>
 
